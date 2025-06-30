@@ -1,0 +1,141 @@
+.header-container {
+    width: 100%;
+    height: 20vh; /* Exactement 20vh */
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    position: relative; /* Changer fixed à relative */
+}
+/* Première row : 15vh, noir avec logo WoW au centre */
+.header-top-row {
+    height: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wow-logo {
+    margin-top: 10px;
+    z-index: 10;
+    background-image: url('/src/assets/image/wow-logo.png'); /* Chemin absolu depuis public */
+    width: 20%;
+    height: 25%;
+    /* Supprimez background-color si le fond est transparent */
+    background-repeat: no-repeat; /* Assurez-vous que l'image ne se répète pas */
+    background-size: contain; /* Ajuste l'image pour tenir dans la zone */
+    background-position: center; /* Centre l'image */
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    clickable: true; /* Assurez-vous que l'image est cliquable */
+    cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+}
+
+.wow-logo:hover {
+    transform: scale(1.05); /* Agrandit légèrement l'image au survol */
+    transition: transform 0.3s ease; /* Ajoute une transition douce */
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10; /* S'assurer que la navbar est au-dessus des autres éléments */
+}
+
+/* Troisième row : Navbar temporaire (10vh) */
+.header-nav-row {
+    height: 35%; /* 15% du header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../../assets/image/gold.png');
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+    color: #fff;
+    position: relative; /* Ajout pour permettre le positionnement absolu du bouton */
+}
+
+/* Quatrième row : Logo "tt" répété et inversé */
+.header-image-band-inverted {
+    width: 100%;
+    height: 5vh; /* 10% du header */
+    background-image: url('../../../assets/image/chain.png');
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+
+}
+
+/* Correction de la classe .container-logo (si nécessaire) */
+.container-logo {
+    width: 100%;
+    height: 40px;
+    position: relative; /* Pas besoin de fixed ici */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.nav-link {
+    color: #ffd700;
+    text-decoration: none;
+    font-size: 10px;
+    padding: 1px 10px;
+    z-index: 15;
+    border-right: gold 1px solid; /* Bordure droite dorée */
+}
+
+.nav-link-last {
+    color: #ffd700;
+    text-decoration: none;
+    font-size: 10px;
+    padding: 1px 10px;
+    z-index: 15;
+
+
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.nav-link-last:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.buttonHeader {
+    border-radius: 5px;
+    height: 17px;
+    width: 17px;
+    background-color: #ffd700;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border: none
+}
+
+.buttonHeader:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
+}
+
+.buttonHeader:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
+}
+
+.header-nav-buttons {
+    position: absolute;
+    right: 20px; /* Ajustez selon vos besoins */
+    top: 50%;
+    transform: translateY(-50%);
+
+}

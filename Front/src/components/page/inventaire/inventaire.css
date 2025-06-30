@@ -1,0 +1,50 @@
+.inventory-container {
+    padding: 20px;
+    background-color: rgba(2, 5, 11, 255);
+    color: #cccccc;
+    text-shadow: 0 0 2px #000;
+}
+
+.inventory-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.items-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.item-details {
+    background-color: rgba(2, 5, 11, 255);
+    padding: 20px;
+    border: 1px solid #747220;
+    border-radius: 4px;
+    color: #cccccc;
+    text-shadow: 0 0 2px #000;
+    text-align: center;
+    position: relative;
+    min-width: 200px;
+}
+
+.item-image {
+    margin-bottom: 10px;
+}
+
+.delete-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #FF4444;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+    background-color: #CC0000;
+}

@@ -1,0 +1,68 @@
+.search-container {
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+.armurerie-container {
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-details {
+    background-color: rgba(2, 5, 11, 255);
+    padding: 20px;
+    border: 1px solid #747220;
+    border-radius: 4px;
+    color: #cccccc;
+    text-shadow: 0 0 2px #000;
+    text-align: center;
+    position: relative;
+    min-width: 200px;
+}
+
+.item-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.item-image {
+
+    margin-right: 10px;
+}
+
+.item-image img {
+    width: 30px;
+    height: 30px;
+}
+
+.item-details h2 {
+    margin: 0;
+    font-size: 16px; /* Adjust as needed */
+    margin-bottom: 10px; /* Space below header */
+}
+
+.item-details p {
+    margin: 5px 0;
+}
+
+.recover-button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #747220;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.recover-button:hover {
+    background-color: #5c5a1a;
+}

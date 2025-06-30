@@ -1,21 +1,61 @@
-import {
-  createBrowserRouter,
-  RouteObject,
-} from "react-router";
+import { createBrowserRouter } from "react-router";
 
 import AppContainer from "../components/communs/appContainer/appContainer";
-import HomePage from "../components/page/home/homePage";
-import BattleNetAuth from "../components/communs/battleNetAuth/battleNetAuth";
+import Connect from "../components/communs/connect/connect";
+import Guard from "../guard/guard"; // Ajusté le chemin d'importation
+import NotFound from "../components/page/not-found/not-found";
+import Home from "../components/page/home/home";
+import Armurerie from "../components/page/armurerie/armurerie";
+import Bestiaire from "../components/page/bestiaire/bestiaire";
+import Inventaire from "../components/page/inventaire/inventaire";
 
-let router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
-    Component: BattleNetAuth,
+    element: <AppContainer />, // Rendre AppContainer comme élément par défaut
     children: [
       {
-        path: "/",
-        Component: HomePage,
-      }
+        index: true, // Route par défaut pour /
+        element: <Home />, // Page d'accueil
+      },
+      {
+        path: "/connect",
+        element: <Connect />,
+      },
+      {
+        path: "/armurerie", // Route protégée
+        element: <Guard />,
+        children: [
+          {
+            index: true, // Rend ce composant par défaut sous /armurerie
+            element: <Armurerie />, // Placeholder, remplacez par votre composant
+          },
+        ],
+      },
+      {
+        path: "/inventaire", // Route protégée
+        element: <Guard />,
+        children: [
+          {
+            index: true,
+            element: <Inventaire />,
+          },
+        ],
+      },
+      {
+        path: "/bestiaire", // Route protégée
+        element: <Guard />,
+        children: [
+          {
+            index: true,
+            element: <Bestiaire />, // Placeholder
+          },
+        ],
+      },
+      {
+        path: "*",
+        element: <NotFound />, // Route de secours pour 404
+      },
     ],
   },
 ]);
