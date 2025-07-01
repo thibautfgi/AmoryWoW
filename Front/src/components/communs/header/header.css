@@ -18,11 +18,13 @@
 .wow-logo {
     margin-top: 10px;
     z-index: 0;
+    background-image: url('/src/assets/image/wow-logo.png'); /* Chemin absolu depuis public */
     width: 20%;
     height: 25%;
-
     /* Supprimez background-color si le fond est transparent */
-    background-position:  ; /* Centre l'image */
+    background-repeat: no-repeat; /* Assurez-vous que l'image ne se répète pas */
+    background-size: contain; /* Ajuste l'image pour tenir dans la zone */
+    background-position: center; /* Centre l'image */
     position: fixed;
     align-items: center;
     justify-content: center;
@@ -54,6 +56,7 @@
     background-size: auto 100%;
     color: #fff;
     position: relative; /* Ajout pour permettre le positionnement absolu du bouton */
+    z-index: 1;
 }
 
 /* Quatrième row : Logo "tt" répété et inversé */
@@ -63,6 +66,7 @@
     background-image: url('../../../assets/image/chain.png');
     background-repeat: repeat-x;
     background-size: auto 100%;
+    z-index: 1;
 
 }
 

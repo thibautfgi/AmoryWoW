@@ -57,3 +57,29 @@ export const postItem = (id: number): Promise<any> => {
             throw error.response?.data?.error || error.message;
         });
 };
+
+export const getInventory = (): Promise<number[]> => {
+    console.log('Fetching inventory from:', `${API_BASE_URL}/inventory`, 'with config:', { withCredentials: true }); // Debug log
+    return axios.get(`${API_BASE_URL}/inventory`, { withCredentials: true })
+        .then((response) => {
+            console.log('Inventory response:', response.data); // Debug log
+            return response.data;
+        })
+        .catch((error) => {
+            console.error('Inventory fetch error:', error.response?.data || error.message); // Debug log
+            throw error.response?.data?.error || error.message;
+        });
+};
+
+export const deleteItem = (id: number): Promise<any> => {
+    console.log('Deleting item from:', `${API_BASE_URL}/item/${id}`, 'with config:', { withCredentials: true }); // Debug log
+    return axios.delete(`${API_BASE_URL}/item/${id}`, { withCredentials: true })
+        .then((response) => {
+            console.log('Delete response:', response.data); // Debug log
+            return response.data;
+        })
+        .catch((error) => {
+            console.error('Delete error:', error.response?.data || error.message); // Debug log
+            throw error.response?.data?.error || error.message;
+        });
+};

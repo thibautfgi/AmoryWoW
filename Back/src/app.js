@@ -4,7 +4,7 @@ const cors = require("cors");
 const passport = require("passport");
 const configuration = require("./config/configuration");
 require("dotenv").config();
-const mongoose = require("mongoose"); // Add Mongoose
+const mongoose = require("mongoose");
 
 // Importation des routes
 const authRoutes = require("./routes/authRoutes");
@@ -44,6 +44,23 @@ app.use(
 // Initialisation de Passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Middleware pour enregistrer l'utilisateur après authentification
+app.use((req, res, next) => {
+    if (req.user && req.session.accessToken) {
+        const { User } = require('./controllers/wowItemsController'); // Importation dynamique
+        User.findOne({ id_user: req.user.id }).then(existingUser => {
+            if (!existingUser) {
+                const newUser = new User({
+                    id_user: req.user.id,
+                    blizzardAccountName: req.user.battletag // Utilisation de battletag comme nom
+                });
+                newUser.save().then(() => console.log(`User ${req.user.id} saved`)).catch(err => console.error("Error saving user:", err));
+            }
+        }).catch(err => console.error("Error checking user:", err));
+    }
+    next();
+});
 
 // Utilisation des routes
 app.use("/auth", authRoutes);

@@ -11,21 +11,14 @@ function Header(): JSX.Element {
     return (
         <div className="header-container">
             <div className="header-top-row">
-                <img
-                    className="wow-logo"
-                    src={logo}
-                    alt="WoW Logo"
-                    onError={(e) => console.error('Image failed to load:', e)}
-                />
+                <Link to="/" className="wow-logo"></Link>
             </div>
-
-            <div className={"test"}></div>
 
             <div className="header-nav-row">
                 <nav className="navbar">
                     <Link to="/armurerie" className="nav-link">Armurerie</Link>
-                    <Link to="/bestiaire" className="nav-link">Bestiaire</Link>
-                    <Link to="/inventaire" className="nav-link-last">Inventaire</Link>
+                    <Link to="/inventaire" className="nav-link">Inventaire</Link>
+                    <Link to="/admin" className="nav-link-last">Page Admin</Link>
                 </nav>
                 <div className="header-nav-buttons">
                     <button className="buttonHeader">

@@ -1,22 +1,25 @@
 import { JSX, useState, useEffect } from 'react';
 import './inventaire.css';
-import { apiGetItemById, apiGetItemMediaById } from '../../communs/service/apiService';
-import {getBorderColor, getFrenchTranslation} from "../armurerie/service/tools.service"; // Adjust path if needed
-
+import { apiGetItemById, apiGetItemMediaById, getInventory, deleteItem } from '../../communs/service/apiService';
+import { getBorderColor, getFrenchTranslation } from "../armurerie/service/tools.service";
+import { useAuth } from '../../communs/authProvider/authProvider'// Ajustez le chemin
 
 function Inventaire(): JSX.Element {
     const [items, setItems] = useState<{ id: number, data: any, media: any }[]>([]);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const { isAuthenticated } = useAuth();
 
     useEffect(() => {
+        if (!isAuthenticated) {
+            setItems([]);
+            setErrorMessage('Veuillez vous connecter pour voir votre inventaire.');
+            return;
+        }
+
         const fetchItems = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/wow/inventory', {
-                    method: 'GET',
-                    credentials: 'include',
-                });
-                if (!response.ok) throw new Error('Failed to fetch inventory');
-                const itemIds = await response.json();
+                const itemIds = await getInventory();
+                console.log('Fetched item IDs from inventory:', itemIds); // Debug log
 
                 const itemPromises = itemIds.map((id: number) =>
                     new Promise<{ id: number, data: any, media: any }>(resolve => {
@@ -48,15 +51,15 @@ function Inventaire(): JSX.Element {
         };
 
         fetchItems();
-    }, []);
+    }, [isAuthenticated]);
 
     const handleDeleteItem = async (id: number) => {
+        if (!isAuthenticated) {
+            setErrorMessage('Veuillez vous connecter pour supprimer un item.');
+            return;
+        }
         try {
-            const response = await fetch(`http://localhost:3000/api/wow/item/${id}`, {
-                method: 'DELETE',
-                credentials: 'include',
-            });
-            if (!response.ok) throw new Error('Failed to delete item');
+            await deleteItem(id);
             setItems(items.filter(item => item.id !== id));
             console.log(`Item ${id} deleted successfully`);
         } catch (error) {

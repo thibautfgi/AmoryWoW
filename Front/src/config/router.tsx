@@ -1,13 +1,14 @@
 import { createBrowserRouter } from "react-router";
 
 import AppContainer from "../components/communs/appContainer/appContainer";
-import Connect from "../components/communs/connect/connect";
-import Guard from "../guard/guard"; // Ajusté le chemin d'importation
+import AuthProvider from "../components/communs/authProvider/authProvider"; // Contexte global
+import Guard from "../guard/guard";
 import NotFound from "../components/page/not-found/not-found";
 import Home from "../components/page/home/home";
 import Armurerie from "../components/page/armurerie/armurerie";
-import Bestiaire from "../components/page/bestiaire/bestiaire";
+import Admin from "../components/page/admin/admin";
 import Inventaire from "../components/page/inventaire/inventaire";
+import Connect from "../components/communs/connect/connect"; // Nouvel import
 
 const router = createBrowserRouter([
   {
@@ -19,8 +20,8 @@ const router = createBrowserRouter([
         element: <Home />, // Page d'accueil
       },
       {
-        path: "/connect",
-        element: <Connect />,
+        path: "/connect", // Route pour la page de connexion/déconnexion
+        element: <Connect />, // Interface UI basée sur le contexte
       },
       {
         path: "/armurerie", // Route protégée
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true, // Rend ce composant par défaut sous /armurerie
-            element: <Armurerie />, // Placeholder, remplacez par votre composant
+            element: <Armurerie />, // Placeholder
           },
         ],
       },
@@ -43,12 +44,12 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/bestiaire", // Route protégée
+        path: "/admin", // Route protégée
         element: <Guard />,
         children: [
           {
             index: true,
-            element: <Bestiaire />, // Placeholder
+            element: <Admin />, // Placeholder
           },
         ],
       },

@@ -1,25 +1,30 @@
 import { JSX } from 'react';
 import './home.css';
-import Connect from "../../communs/connect/connect";
+import { useAuth } from "../../communs/authProvider/authProvider";
+import Connect from "../../communs/connect/connect"; // Ajustez le chemin
 
 function Home(): JSX.Element {
+    const { isAuthenticated, user, login } = useAuth();
 
     return (
         <div className={'home-container'}>
-
-
             <div className="container">
-                <h4> Bienvenue sur le portail de gestion de votre inventaire !</h4><br/>
+                <h4>Bienvenue sur le portail de gestion de votre inventaire !</h4><br />
+                {isAuthenticated ? (
+                    <>
+                        <h6>Bonjour {user}, vous êtes connecté. Gérez vos items avec efficacité !</h6><br />
+                        < Connect />
+                    </>
+                ) : (
+                    <>
+                        <h6>Commencez par vous connecter pour accéder à vos items et les gérer efficacement.</h6><br />
 
-
-                    <h6>Commencez par vous connecter pour accéder à vos items et les gérer efficacement.</h6><br/>
-
-                < Connect />
+                        < Connect />
+                    </>
+                )}
             </div>
-
-
         </div>
-    )
+    );
 }
 
 export default Home;
