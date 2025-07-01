@@ -16,18 +16,27 @@
 }
 
 .main-content {
-    height: 75vh; /* Exactement 75vh */
-    width: calc(100% - 16rem); /* Compense les marges */
-    margin: 0 8rem;
+    height: 75vh;
+    margin-left: 8rem;
+    margin-right: 8rem;
     flex: 1;
-    overflow-y: auto; /* Permet le scroll vertical */
-    scrollbar-width: none; /* Pour Firefox */
-    -ms-overflow-style: none; /* Pour IE et Edge */
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
    /*  background-color: rgba(4, 11, 23, 0.5); */
+
+}
+
+
+@media screen and (max-width: 600px) {
+    .main-content {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 }
 
 .main-content::-webkit-scrollbar {
-    display: none; /* Pour Chrome, Safari et Opera */
+    display: none;
 }
 
 .bot {

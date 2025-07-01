@@ -1,16 +1,22 @@
 import { JSX } from 'react';
 import './header.css';
-import TestItem from "../../communs/test/testItem";
 import { Link } from 'react-router-dom';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faFire } from '@fortawesome/free-solid-svg-icons';
+// @ts-ignore
+import logo from '../../../assets/image/wow-logo.png';
 
 
 function Header(): JSX.Element {
     return (
         <div className="header-container">
             <div className="header-top-row">
-                <Link to="/" className="wow-logo"></Link>
+                <img
+                    className="wow-logo"
+                    src={logo}
+                    alt="WoW Logo"
+                    onError={(e) => console.error('Image failed to load:', e)}
+                />
             </div>
 
             <div className={"test"}></div>

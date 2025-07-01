@@ -17,14 +17,12 @@
 
 .wow-logo {
     margin-top: 10px;
-    z-index: 10;
-    background-image: url('/src/assets/image/wow-logo.png'); /* Chemin absolu depuis public */
+    z-index: 0;
     width: 20%;
     height: 25%;
+
     /* Supprimez background-color si le fond est transparent */
-    background-repeat: no-repeat; /* Assurez-vous que l'image ne se répète pas */
-    background-size: contain; /* Ajuste l'image pour tenir dans la zone */
-    background-position: center; /* Centre l'image */
+    background-position:  ; /* Centre l'image */
     position: fixed;
     align-items: center;
     justify-content: center;

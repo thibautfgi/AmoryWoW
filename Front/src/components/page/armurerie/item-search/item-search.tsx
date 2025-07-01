@@ -66,7 +66,7 @@ function ItemSearch({ onItemSelect }: { onItemSelect: (itemWithMedia: { item: an
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    const resultsPerPage = 10;
+    const resultsPerPage = 5;
 
     useEffect(() => {
         let timeoutId: number | undefined;
