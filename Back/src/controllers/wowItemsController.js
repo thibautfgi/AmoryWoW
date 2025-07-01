@@ -10,10 +10,12 @@ const itemSchema = new mongoose.Schema({
 });
 const Item = mongoose.model("Item", itemSchema);
 
-// Define the User schema
+// Define the User schema with isBan
 const userSchema = new mongoose.Schema({
     id_user: { type: String, required: true, unique: true }, // Unique ID from Blizzard/Passport
     blizzardAccountName: { type: String, required: true },   // Blizzard account name (battletag)
+    isAdmin: { type: Boolean, required: true, default: false }, // Statut admin par défaut false
+    isBan: { type: Boolean, required: true, default: false }, // Statut ban par défaut false
     createdAt: { type: Date, default: Date.now }            // Optional: Track creation time
 });
 const User = mongoose.model("User", userSchema);
@@ -189,14 +191,44 @@ const deleteItem = async (req, res) => {
     }
 };
 
-// New endpoint to get all users (for admin page)
 const getUsers = async (req, res) => {
     try {
-        const users = await User.find({}, 'id_user blizzardAccountName');
+        const users = await User.find({ isAdmin: false }, 'id_user blizzardAccountName isAdmin isBan'); // Filtrer les non-admins
         res.status(200).json(users);
     } catch (error) {
         console.error("Error fetching users:", error);
         res.status(500).json({ error: "Error fetching users", message: error.message });
+    }
+};
+
+const updateUserBan = async (req, res) => {
+    try {
+        const { id_user } = req.params;
+        const { isBan } = req.body;
+        const updatedUser = await User.findOneAndUpdate(
+            { id_user },
+            { isBan },
+            { new: true, runValidators: true }
+        );
+        if (!updatedUser) {
+            return res.status(404).json({ error: "User not found" });
+        }
+        res.status(200).json({ message: "User ban status updated", user: updatedUser });
+    } catch (error) {
+        console.error("Error updating user ban status:", error);
+        res.status(500).json({ error: "Error updating user ban status", message: error.message });
+    }
+};
+
+
+const getInventoryByUser = async (req, res) => {
+    try {
+        const { id_user } = req.params;
+        const items = await Item.find({ id_user }, 'itemId');
+        res.json(items.map(item => item.itemId));
+    } catch (error) {
+        console.error("Error fetching inventory for user:", error);
+        res.status(500).json({ error: "Error fetching inventory", message: error.message });
     }
 };
 
@@ -211,5 +243,7 @@ module.exports = {
     getInventory,
     deleteItem,
     User,
-    getUsers
+    getUsers,
+    updateUserBan,
+    getInventoryByUser
 };

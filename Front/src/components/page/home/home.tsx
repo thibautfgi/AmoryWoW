@@ -1,7 +1,10 @@
 import { JSX } from 'react';
 import './home.css';
 import { useAuth } from "../../communs/authProvider/authProvider";
-import Connect from "../../communs/connect/connect"; // Ajustez le chemin
+
+// @ts-ignore
+import Connect from "../../communs/connect/connect";
+
 
 function Home(): JSX.Element {
     const { isAuthenticated, user, login } = useAuth();

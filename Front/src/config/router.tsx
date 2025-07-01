@@ -1,40 +1,39 @@
 import { createBrowserRouter } from "react-router";
 
 import AppContainer from "../components/communs/appContainer/appContainer";
-import AuthProvider from "../components/communs/authProvider/authProvider"; // Contexte global
-import Guard from "../guard/guard";
+import Connect from "../components/communs/connect/Connect";
+import { Guard, AdminGuard } from "../guard/guard";
 import NotFound from "../components/page/not-found/not-found";
 import Home from "../components/page/home/home";
 import Armurerie from "../components/page/armurerie/armurerie";
 import Admin from "../components/page/admin/admin";
 import Inventaire from "../components/page/inventaire/inventaire";
-import Connect from "../components/communs/connect/connect"; // Nouvel import
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppContainer />, // Rendre AppContainer comme élément par défaut
+    element: <AppContainer />,
     children: [
       {
-        index: true, // Route par défaut pour /
-        element: <Home />, // Page d'accueil
+        index: true,
+        element: <Home />,
       },
       {
-        path: "/connect", // Route pour la page de connexion/déconnexion
-        element: <Connect />, // Interface UI basée sur le contexte
+        path: "/connect",
+        element: <Connect />,
       },
       {
-        path: "/armurerie", // Route protégée
+        path: "/armurerie",
         element: <Guard />,
         children: [
           {
-            index: true, // Rend ce composant par défaut sous /armurerie
-            element: <Armurerie />, // Placeholder
+            index: true,
+            element: <Armurerie />,
           },
         ],
       },
       {
-        path: "/inventaire", // Route protégée
+        path: "/inventaire",
         element: <Guard />,
         children: [
           {
@@ -44,18 +43,18 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/admin", // Route protégée
-        element: <Guard />,
+        path: "/admin",
+        element: <AdminGuard />,
         children: [
           {
             index: true,
-            element: <Admin />, // Placeholder
+            element: <Admin />,
           },
         ],
       },
       {
         path: "*",
-        element: <NotFound />, // Route de secours pour 404
+        element: <NotFound />,
       },
     ],
   },

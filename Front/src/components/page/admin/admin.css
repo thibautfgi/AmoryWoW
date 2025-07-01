@@ -1,0 +1,87 @@
+.admin-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #cccccc;
+    text-shadow: 0 0 2px #000;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.user-table th,
+.user-table td {
+    border: 1px solid #747220;
+    padding: 8px;
+    text-align: left;
+    background-color: rgba(2, 5, 11, 255);
+    color: #cccccc;
+    text-shadow: 0 0 2px #000;
+}
+
+.user-table th {
+    background-color: rgba(2, 5, 11, 255);
+}
+
+.ban-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.ban-button.red {
+    background-color: #ff4444;
+    color: white;
+}
+
+.ban-button.green {
+    background-color: #44ff44;
+    color: white;
+}
+
+.ban-button:hover {
+    opacity: 0.8;
+}
+
+/* ✅ Responsive design pour les écrans < 600px */
+@media (max-width: 600px) {
+    .user-table thead {
+        display: none; /* Cache l'en-tête */
+    }
+
+    .user-table,
+    .user-table tbody,
+    .user-table tr,
+    .user-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .user-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #747220;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: rgba(2, 5, 11, 255);
+        font-size: 10px;
+    }
+
+    .user-table td {
+        padding: 10px;
+        text-align: right;
+        position: relative;
+    }
+
+    .user-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        text-align: left;
+        text-shadow: 0 0 2px #000;
+    }
+}

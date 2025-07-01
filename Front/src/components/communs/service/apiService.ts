@@ -83,3 +83,13 @@ export const deleteItem = (id: number): Promise<any> => {
             throw error.response?.data?.error || error.message;
         });
 };
+
+const getInventoryCount = async (id_user: string) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/inventory/${id_user}`, { withCredentials: true });
+        return response.data.length;
+    } catch (err) {
+        console.error('Erreur lors du comptage de l\'inventaire:', err);
+        return 0;
+    }
+};
