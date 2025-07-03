@@ -1,0 +1,16 @@
+/* Réinitialisation de base pour l'application React */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+}
+
+body {
+  font-family: Sku;
+  color: antiquewhite;
+  background: #fff;
+  color: #222;
+}
+

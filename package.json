@@ -11,5 +11,8 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.0"
+  },
+  "dependencies": {
+    "expo": "^53.0.16"
   }
 }
